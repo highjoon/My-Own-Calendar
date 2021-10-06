@@ -1,6 +1,6 @@
 import React from "react";
 
-import style from "../Styles/Style";
+import { DetailContainer, DetailTitle, DetailTime, DetailContent, DetailBtnContainer, EditBtn, DeleteBtn, CompleteBtn } from "../Styles/Style";
 
 const Detail = () => {
     return (

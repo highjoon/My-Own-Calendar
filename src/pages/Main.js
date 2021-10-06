@@ -1,9 +1,5 @@
-import React, { useState } from "react";
-import HeaderBar from "../components/Header";
+import React from "react";
 import Calendar from "../components/Calendar";
-import dayjs from "dayjs";
-import "dayjs/locale/ko";
-import "dayjs/plugin/weekday";
 
 const Main = () => {
     return (

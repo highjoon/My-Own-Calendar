@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import "dayjs/plugin/weekday";
-import style from "../Styles/Style";
+import { CalendarContainer, DayContainer, DateContainer, Date, Day, ControlBtnContainer, CalendarBtn, NavBar, TodayBtn, MonthContainer, ChangeMonthBtn, Current, DarkModeBtn } from "../Styles/Style";
 import Detail from "./Detail";
 import { useHistory } from "react-router";
 import range from "lodash-es/range";
@@ -36,15 +36,15 @@ const Calendar = () => {
     return (
         <React.Fragment>
             <CalendarContainer className="calendarContainer">
-                <div className="header">
-                    <button type="button" className="nav nav--prev" onClick={prevMonth}>
-                        &lt;
-                    </button>
-                    <div className="datetime">{dayObj.format("MMM DD YYYY")}</div>
-                    <button type="button" className="nav nav--prev" onClick={nextMonth}>
-                        &gt;
-                    </button>
-                </div>
+                <NavBar className="header">
+                    <TodayBtn>Today</TodayBtn>
+                    <MonthContainer>
+                        <ChangeMonthBtn onClick={prevMonth}>Prev</ChangeMonthBtn>
+                        <Current className="datetime">{dayObj.format("MMM DD YYYY")}</Current>
+                        <ChangeMonthBtn onClick={nextMonth}>Next</ChangeMonthBtn>
+                    </MonthContainer>
+                    <DarkModeBtn className="dark_btn">Dark</DarkModeBtn>
+                </NavBar>
                 <DayContainer className="dayContainer">
                     {weekDays.map((day, idx) => (
                         <Day className={day} key={day}>

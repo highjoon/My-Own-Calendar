@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import dayjs from "dayjs";
 
-import style from "../Styles/Style";
+import { NavBar, TodayBtn, MonthContainer, ChangeMonthBtn, Current, DarkModeBtn } from "../Styles/Style";
 import { actionCreators as dateActions } from "../redux/modules/date";
 
 const HeaderBar = (props) => {
@@ -24,8 +24,8 @@ const HeaderBar = (props) => {
 
     return (
         <React.Fragment>
-            <style.NavBar className="navbar">
-                <style.TodayBtn>Today</style.TodayBtn>
+            <NavBar className="navbar">
+                <TodayBtn>Today</TodayBtn>
                 <MonthContainer>
                     <ChangeMonthBtn className="prev" onClick={prevMonth}>
                         Prev
@@ -36,7 +36,7 @@ const HeaderBar = (props) => {
                     </ChangeMonthBtn>
                 </MonthContainer>
                 <DarkModeBtn className="dark_btn">Dark</DarkModeBtn>
-            </style.NavBar>
+            </NavBar>
         </React.Fragment>
     );
 };
