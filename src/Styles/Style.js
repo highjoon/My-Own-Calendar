@@ -233,4 +233,23 @@ export const UploadBtn = styled.button`
     margin-left: 10px;
 `;
 
-//
+// Modal
+export const ModalStyles = {
+    content: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "space-evenly",
+        width: "60%",
+        height: "60%",
+        margin: "0 auto",
+        border: "1px solid var(--color-black)",
+        borderRadius: "var(--size-border-radius)",
+        textAlign: "center",
+        backgroundColor: "var(--color-white)",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+    },
+};

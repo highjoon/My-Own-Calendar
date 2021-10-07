@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import range from "lodash-es/range";
+import { useSelector, useDispatch } from "react-redux";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import "dayjs/plugin/weekday";
-import { useHistory } from "react-router";
-import range from "lodash-es/range";
-
-import { useSelector, useDispatch } from "react-redux";
-
-import { CalendarContainer, DayContainer, DateContainer, Date, Day, ControlBtnContainer, CalendarBtn, NavBar, TodayBtn, MonthContainer, ChangeMonthBtn, Current, DarkModeBtn } from "../Styles/Style";
-
 import { actionCreators as modalActions } from "../redux/modules/modal";
+import { CalendarContainer, DayContainer, DateContainer, Date, Day, ControlBtnContainer, CalendarBtn } from "../Styles/Style";
 
 const Calendar = () => {
     const dispatch = useDispatch();

@@ -1,10 +1,10 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
-import { history } from "../redux/configureStore";
-import GlobalStyle from "../Styles/GlobalStyle";
-import Main from "../pages/Main";
 import Modal from "react-modal";
+import { history } from "../redux/configureStore";
+import Main from "../pages/Main";
+import GlobalStyle from "../Styles/GlobalStyle";
 
 function App() {
     return (

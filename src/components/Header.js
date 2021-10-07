@@ -1,9 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-
-import { NavBar, TodayBtn, MonthContainer, ChangeMonthBtn, Current } from "../Styles/Style";
-
 import { actionCreators as dateActions } from "../redux/modules/date";
+import { NavBar, TodayBtn, MonthContainer, ChangeMonthBtn, Current } from "../Styles/Style";
 
 const HeaderBar = (props) => {
     const dispatch = useDispatch();

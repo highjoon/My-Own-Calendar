@@ -1,15 +1,11 @@
 import React, { useState, useRef } from "react";
-import { UploadContainer, UploadTitle, UploadDate, UploadContent, UploadBtn } from "../Styles/Style";
-
-import Modal from "react-modal";
-
-import "react-datepicker/dist/react-datepicker.css";
-
-import ko from "date-fns/esm/locale/ko";
 import { useSelector, useDispatch } from "react-redux";
-
+import Modal from "react-modal";
+import ko from "date-fns/esm/locale/ko";
+import "react-datepicker/dist/react-datepicker.css";
 import { actionCreators as modalActions } from "../redux/modules/modal";
 import { actionCreators as scheduleActions } from "../redux/modules/schedule";
+import { UploadContainer, UploadTitle, UploadDate, UploadContent, UploadBtn, ModalStyles } from "../Styles/Style";
 
 const UploadModal = (props) => {
     const dispatch = useDispatch();
@@ -39,7 +35,7 @@ const UploadModal = (props) => {
 
     return (
         <React.Fragment>
-            <Modal isOpen={modalIsOpen} onRequestClose={_closeModal} style={customtStyles}>
+            <Modal isOpen={modalIsOpen} onRequestClose={_closeModal} style={ModalStyles}>
                 <UploadTitle type="text" placeholder="제목 추가" ref={scheduleTitle} />
                 <UploadDate
                     placeholderText="날짜를 선택해주세요." //
@@ -54,26 +50,6 @@ const UploadModal = (props) => {
             </Modal>
         </React.Fragment>
     );
-};
-
-const customtStyles = {
-    content: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "space-evenly",
-        width: "60%",
-        height: "60%",
-        margin: "0 auto",
-        border: "1px solid var(--color-black)",
-        borderRadius: "var(--size-border-radius)",
-        textAlign: "center",
-        backgroundColor: "var(--color-white)",
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-    },
 };
 
 export default UploadModal;
