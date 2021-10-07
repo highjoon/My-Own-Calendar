@@ -5,7 +5,7 @@ import ko from "date-fns/esm/locale/ko";
 import "react-datepicker/dist/react-datepicker.css";
 import { actionCreators as modalActions } from "../redux/modules/modal";
 import { actionCreators as scheduleActions } from "../redux/modules/schedule";
-import { UploadContainer, UploadTitle, UploadDate, UploadContent, UploadBtn, ModalStyles } from "../Styles/Style";
+import { UploadTitle, UploadDate, UploadContent, UploadBtn, ModalStyles } from "../Styles/Style";
 
 const UploadModal = (props) => {
     const dispatch = useDispatch();
@@ -15,22 +15,28 @@ const UploadModal = (props) => {
 
     const [startDate, setStartDate] = useState(null);
 
-    const scheduleTitle = useRef();
-    const scheduleDate = useRef();
-    const scheduleDesc = useRef();
+    let scheduleTitle = useRef();
+    let scheduleDate = useRef();
+    let scheduleDesc = useRef();
 
     const _closeModal = () => {
         dispatch(modalActions.closeModal());
     };
 
     const createNewSchedule = () => {
-        const newTitle = scheduleTitle.current.value;
-        const newDate = scheduleDate.current.input.value.split(" ").map((x) => Number(x.substring(0, x.length - 1)));
-        const newDesc = scheduleDesc.current.value;
+        let newTitle = scheduleTitle.current.value;
+        let newDate = scheduleDate.current.input.value.split(" ").map((x) => Number(x.substring(0, x.length - 1)));
+        let newDesc = scheduleDesc.current.value;
+
+        if (!newTitle || newDate.length === 1 || !newDesc) {
+            window.alert("모든 항목을 입력해주세요!");
+            return;
+        }
 
         const newObj = { title: newTitle, date: newDate, desc: newDesc };
 
         dispatch(scheduleActions.setSchedule(newObj));
+        dispatch(modalActions.closeModal());
     };
 
     return (
@@ -46,7 +52,7 @@ const UploadModal = (props) => {
                     ref={scheduleDate}
                 />
                 <UploadContent placeholder="설명 추가" ref={scheduleDesc} />
-                <UploadBtn onClick={(createNewSchedule, _closeModal)}>Upload</UploadBtn>
+                <UploadBtn onClick={createNewSchedule}>Upload</UploadBtn>
             </Modal>
         </React.Fragment>
     );
