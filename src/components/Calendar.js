@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import "dayjs/plugin/weekday";
@@ -9,14 +9,18 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { CalendarContainer, DayContainer, DateContainer, Date, Day, ControlBtnContainer, CalendarBtn, NavBar, TodayBtn, MonthContainer, ChangeMonthBtn, Current, DarkModeBtn } from "../Styles/Style";
 
-import Modal from "./Modal";
+import { actionCreators as modalActions } from "../redux/modules/modal";
 
 const Calendar = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+
+    const _showModal = (is_upload) => {
+        dispatch(modalActions.showModal(is_upload));
+    };
 
     const dayObj = useSelector((state) => state.date.date);
     const todayObj = useSelector((state) => state.date.now);
+    const newSchedule = useSelector((state) => state.schedule.schedule);
 
     const todayYear = todayObj.get("year");
     const todayMonth = todayObj.get("month");
@@ -73,16 +77,12 @@ const Calendar = () => {
                     ))}
                 </DateContainer>
                 <ControlBtnContainer>
-                    <CalendarBtn
-                        className="upload_btn"
-                        onClick={() => {
-                            history.push("/upload");
-                        }}
-                    >
+                    <CalendarBtn className="upload_btn" onClick={() => _showModal(true)}>
                         추가하기
                     </CalendarBtn>
                     <CalendarBtn className="complete_check_btn">완료된 일정 보기</CalendarBtn>
                 </ControlBtnContainer>
+                <button onClick={() => _showModal(false)}>Modal Open</button>
             </CalendarContainer>
         </React.Fragment>
     );

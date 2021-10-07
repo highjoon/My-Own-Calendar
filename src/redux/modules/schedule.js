@@ -11,7 +11,7 @@ const setSchedule = createAction(SET_SCHEDULE, (schedule) => ({ schedule }));
 const initialState = {
     schedule: {
         title: "타이틀",
-        date: null,
+        date: [2021, 10, 5],
         desc: "설명",
     },
 };

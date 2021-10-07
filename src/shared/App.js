@@ -4,7 +4,6 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import GlobalStyle from "../Styles/GlobalStyle";
 import Main from "../pages/Main";
-import Upload from "../pages/Upload";
 import Modal from "react-modal";
 
 function App() {
@@ -13,7 +12,6 @@ function App() {
             <GlobalStyle />
             <ConnectedRouter history={history}>
                 <Route component={Main} path="/" exact />
-                <Route component={Upload} path="/upload" exact />
             </ConnectedRouter>
         </React.Fragment>
     );

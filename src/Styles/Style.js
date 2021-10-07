@@ -112,7 +112,7 @@ export const CalendarBtn = styled.button`
 `;
 
 // Detail
-export const ModalContainer = styled.div`
+export const DetailContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -130,21 +130,21 @@ export const ModalContainer = styled.div`
     transform: translate(-50%, -50%);
 `;
 
-export const ModalTitle = styled.h1`
+export const DetailTitle = styled.h1`
     width: 80%;
     font-size: var(--font-large);
 `;
 
-export const ModalTime = styled.p`
+export const DetailTime = styled.p`
     width: 80%;
     font-size: var(--font-medium);
 `;
 
-export const ModalContent = styled.p`
+export const DetailContent = styled.p`
     width: 80%;
 `;
 
-export const ModalBtnContainer = styled.div`
+export const DetailBtnContainer = styled.div`
     width: 80%;
 `;
 
