@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
-import Modal from "react-modal";
 
 // Header
 export const NavBar = styled.nav`
@@ -204,9 +203,11 @@ export const UploadTitle = styled.input`
 export const UploadDate = styled(DatePicker)`
     text-align: center;
     font-size: var(--font-medium);
+    outline: none;
+    box-sizing: border-box;
     border: none;
     border-bottom: 2px solid var(--color-light-grey);
-    outline: none;
+    padding: 10px 10px;
 `;
 
 export const UploadContent = styled.textarea`

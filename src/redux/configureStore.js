@@ -5,12 +5,14 @@ import { connectRouter } from "connected-react-router";
 
 import Date from "./modules/date";
 import Schedule from "./modules/schedule";
+import Modal from "./modules/modal";
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
     date: Date,
     schedule: Schedule,
+    modal: Modal,
     router: connectRouter(history),
 });
 

@@ -11,8 +11,6 @@ import { CalendarContainer, DayContainer, DateContainer, Date, Day, ControlBtnCo
 
 import Modal from "./Modal";
 
-import { actionCreators as scheduleActions } from "../redux/modules/schedule";
-
 const Calendar = () => {
     const dispatch = useDispatch();
     const history = useHistory();

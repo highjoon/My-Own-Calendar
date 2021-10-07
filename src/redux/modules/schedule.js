@@ -2,27 +2,31 @@ import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
 
 // Action Types
-const SET_MODAL = "schedule/SET_MODAL";
+const SET_SCHEDULE = "schedule/SET_SCHEDULE";
 
 // Action Creators
-const setModal = createAction(SET_MODAL, (is_open) => ({ is_open }));
+const setSchedule = createAction(SET_SCHEDULE, (schedule) => ({ schedule }));
 
 // Initial State
 const initialState = {
-    is_open: false,
+    schedule: {
+        title: "타이틀",
+        date: null,
+        desc: "설명",
+    },
 };
 
 // Reducer
 export default handleActions(
     {
-        [SET_MODAL]: (state, action) =>
+        [SET_SCHEDULE]: (state, action) =>
             produce(state, (draft) => {
-                draft.is_open = action.payload.is_open;
+                draft.schedule = action.payload.schedule;
             }),
     },
     initialState
 );
 
 export const actionCreators = {
-    setModal,
+    setSchedule,
 };
