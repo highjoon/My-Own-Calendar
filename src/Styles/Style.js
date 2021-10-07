@@ -1,14 +1,15 @@
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
+import Modal from "react-modal";
 
 // Header
 export const NavBar = styled.nav`
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
-    background-color: var(--color-white);
     height: 80px;
+    background-color: var(--color-white);
     border-bottom: 2px solid var(--color-black);
 `;
 
@@ -17,7 +18,6 @@ export const TodayBtn = styled.button`
     border-radius: var(--size-border-radius);
     width: 60px;
     height: 40px;
-    margin-left: 10px;
 `;
 
 export const MonthContainer = styled.div`
@@ -29,7 +29,6 @@ export const MonthContainer = styled.div`
 
 export const Current = styled.span`
     font-size: var(--font-medium);
-    vertical-align: top;
     margin: 0 20px;
 `;
 
@@ -38,14 +37,6 @@ export const ChangeMonthBtn = styled.button`
     border-radius: var(--size-border-radius);
     width: 60px;
     height: 40px;
-`;
-
-export const DarkModeBtn = styled.button`
-    border: 1px solid black;
-    border-radius: var(--size-border-radius);
-    width: 60px;
-    height: 40px;
-    margin-right: 10px;
 `;
 
 // Calendar
@@ -58,14 +49,13 @@ export const DayContainer = styled.div`
     grid-template-columns: repeat(7, 1fr);
     height: 30px;
     line-height: 30px;
+    border-bottom: 2px solid var(--color-black);
 `;
 
 export const Day = styled.div`
     text-align: center;
     width: 100%;
-    border: 2px solid var(--color-black);
-    border-top: none;
-    border-right: none;
+    border-left: 2px solid var(--color-black);
 
     &:first-child {
         border-left: 2px solid var(--color-black);
@@ -98,7 +88,6 @@ export const Date = styled.div`
 
     &.faded {
         color: var(--color-light-grey);
-        /* background-color: red; */
     }
 `;
 
@@ -124,7 +113,7 @@ export const CalendarBtn = styled.button`
 `;
 
 // Detail
-export const DetailContainer = styled.div`
+export const ModalContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -140,24 +129,23 @@ export const DetailContainer = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: none;
 `;
 
-export const DetailTitle = styled.h1`
+export const ModalTitle = styled.h1`
     width: 80%;
     font-size: var(--font-large);
 `;
 
-export const DetailTime = styled.p`
+export const ModalTime = styled.p`
     width: 80%;
     font-size: var(--font-medium);
 `;
 
-export const DetailContent = styled.p`
+export const ModalContent = styled.p`
     width: 80%;
 `;
 
-export const DetailBtnContainer = styled.div`
+export const ModalBtnContainer = styled.div`
     width: 80%;
 `;
 
@@ -243,3 +231,5 @@ export const UploadBtn = styled.button`
     height: 40px;
     margin-left: 10px;
 `;
+
+//

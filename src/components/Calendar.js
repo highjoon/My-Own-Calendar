@@ -1,50 +1,54 @@
-import React, { useState } from "react";
+import React from "react";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import "dayjs/plugin/weekday";
-import { CalendarContainer, DayContainer, DateContainer, Date, Day, ControlBtnContainer, CalendarBtn, NavBar, TodayBtn, MonthContainer, ChangeMonthBtn, Current, DarkModeBtn } from "../Styles/Style";
-import Detail from "./Detail";
 import { useHistory } from "react-router";
 import range from "lodash-es/range";
 
-const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+import { useSelector, useDispatch } from "react-redux";
 
-const todayObj = dayjs();
+import { CalendarContainer, DayContainer, DateContainer, Date, Day, ControlBtnContainer, CalendarBtn, NavBar, TodayBtn, MonthContainer, ChangeMonthBtn, Current, DarkModeBtn } from "../Styles/Style";
+
+import Modal from "./Modal";
+
+import { actionCreators as scheduleActions } from "../redux/modules/schedule";
 
 const Calendar = () => {
+    const dispatch = useDispatch();
     const history = useHistory();
-    const [dayObj, setDayObj] = useState(dayjs());
 
-    const thisYear = dayObj.year();
-    const thisMonth = dayObj.month();
-    const daysInMonth = dayObj.daysInMonth();
+    const dayObj = useSelector((state) => state.date.date);
+    const todayObj = useSelector((state) => state.date.now);
 
-    const dayObjOf1 = dayjs(`${thisYear}-${thisMonth + 1}-1`);
-    const weekDayOf1 = dayObjOf1.day();
+    const todayYear = todayObj.get("year");
+    const todayMonth = todayObj.get("month");
+    const todayDate = todayObj.get("date");
+    const today = dayObj.clone().year(todayYear).month(todayMonth).date(todayDate);
 
-    const dayObjOfLast = dayjs(`${thisYear}-${thisMonth + 1}-${daysInMonth}`);
-    const weekDayOfLast = dayObjOfLast.day();
+    const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-    const prevMonth = () => {
-        setDayObj(dayObj.subtract(1, "month"));
-    };
+    const currentYear = dayObj.year();
+    const currentMonth = dayObj.month();
+    const daysCurrentMonth = dayObj.daysInMonth();
 
-    const nextMonth = () => {
-        setDayObj(dayObj.add(1, "month"));
-    };
+    const dayObjPrevMonth = dayjs(`${currentYear}-${currentMonth + 1}-1`);
+    const daysPrevMonth = dayObjPrevMonth.day();
+
+    const dayObjNextMonth = dayjs(`${currentYear}-${currentMonth + 1}-${daysCurrentMonth}`);
+    const daysNextMonth = dayObjNextMonth.day();
+
+    React.useEffect(() => {
+        const targetDate = document.querySelector(".date" + today.date());
+        if (dayObj.year() === todayYear && dayObj.month() === todayMonth && dayObj.date() === todayDate) {
+            targetDate.style.background = "var(--color-light-yellow)";
+        } else {
+            targetDate.style.background = "var(--color-white)";
+        }
+    });
 
     return (
         <React.Fragment>
             <CalendarContainer className="calendarContainer">
-                <NavBar className="header">
-                    <TodayBtn>Today</TodayBtn>
-                    <MonthContainer>
-                        <ChangeMonthBtn onClick={prevMonth}>Prev</ChangeMonthBtn>
-                        <Current className="datetime">{dayObj.format("MMM DD YYYY")}</Current>
-                        <ChangeMonthBtn onClick={nextMonth}>Next</ChangeMonthBtn>
-                    </MonthContainer>
-                    <DarkModeBtn className="dark_btn">Dark</DarkModeBtn>
-                </NavBar>
                 <DayContainer className="dayContainer">
                     {weekDays.map((day, idx) => (
                         <Day className={day} key={day}>
@@ -53,23 +57,23 @@ const Calendar = () => {
                     ))}
                 </DayContainer>
                 <DateContainer className="dateContainer">
-                    {range(weekDayOf1).map((i) => (
+                    {range(daysPrevMonth).map((i) => (
                         <Date className="faded" key={i}>
-                            {dayObjOf1.subtract(weekDayOf1 - i, "day").date()}
+                            {dayObjPrevMonth.subtract(daysPrevMonth - i, "day").date()}
+                        </Date>
+                    ))}
+                    {range(daysCurrentMonth).map((i) => (
+                        <Date key={i} className={"date" + (i + 1)}>
+                            {i + 1}
                         </Date>
                     ))}
 
-                    {range(daysInMonth).map((i) => (
-                        <Date key={i}>{i + 1}</Date>
-                    ))}
-
-                    {range(6 - weekDayOfLast).map((i) => (
+                    {range(6 - daysNextMonth).map((i) => (
                         <Date className="faded" key={i}>
-                            {dayObjOfLast.add(i + 1, "day").date()}
+                            {dayObjNextMonth.add(i + 1, "day").date()}
                         </Date>
                     ))}
                 </DateContainer>
-                <Detail />
                 <ControlBtnContainer>
                     <CalendarBtn
                         className="upload_btn"

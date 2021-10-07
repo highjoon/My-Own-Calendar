@@ -1,30 +1,36 @@
 import { createAction, handleActions } from "redux-actions";
-import { produce } from "immer";
-// import { firestore, storage } from "../../shared/firebase";
-import "moment";
-import moment from "moment";
+import produce from "immer";
+import dayjs from "dayjs";
 
-const SET_DATE = "SET_DATE";
+// Action Types
+const SET_NOW = "date/SET_NOW";
+const SET_DATE = "date/SET_DATE";
 
+// Action Creators
+const setNow = createAction(SET_NOW, () => ({ now: dayjs() }));
 const setDate = createAction(SET_DATE, (date) => ({ date }));
 
+// Initial State
 const initialState = {
-    date_list: [],
+    now: dayjs(),
+    date: dayjs(),
 };
 
+// Reducer
 export default handleActions(
     {
-        [SET_DATE]: (state, action) => {
+        [SET_NOW]: (state, action) =>
             produce(state, (draft) => {
-                draft.date_list.push(...action.payload.date);
-            });
-        },
+                draft.now = action.payload.now;
+            }),
+        [SET_DATE]: (state, action) =>
+            produce(state, (draft) => {
+                draft.date = action.payload.date;
+            }),
     },
     initialState
 );
 
-const actionCreators = {
+export const actionCreators = {
     setDate,
 };
-
-export { actionCreators };

@@ -1,41 +1,45 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import dayjs from "dayjs";
 
-import { NavBar, TodayBtn, MonthContainer, ChangeMonthBtn, Current, DarkModeBtn } from "../Styles/Style";
+import { NavBar, TodayBtn, MonthContainer, ChangeMonthBtn, Current } from "../Styles/Style";
+
 import { actionCreators as dateActions } from "../redux/modules/date";
 
 const HeaderBar = (props) => {
-    const [dayObj, setDayObj] = useState(dayjs());
+    const dispatch = useDispatch();
 
-    const thisYear = dayObj.year();
-    const thisMonth = dayObj.month();
-    const thisDate = dayObj.date();
-    const daysInMonth = dayObj.daysInMonth();
+    const dayObj = useSelector((state) => state.date.date);
+    const todayObj = useSelector((state) => state.date.now);
 
     const prevMonth = () => {
-        setDayObj(dayObj.subtract(1, "month"));
+        dispatch(dateActions.setDate(dayObj.clone().subtract(1, "month")));
     };
 
     const nextMonth = () => {
-        setDayObj(dayObj.add(1, "month"));
+        dispatch(dateActions.setDate(dayObj.clone().add(1, "month")));
     };
-    console.log(props);
+
+    const moveToday = () => {
+        const todayYear = todayObj.get("year");
+        const todayMonth = todayObj.get("month");
+        const todayDate = todayObj.get("date");
+        const today = dayObj.clone().year(todayYear).month(todayMonth).date(todayDate);
+        dispatch(dateActions.setDate(today));
+    };
 
     return (
         <React.Fragment>
             <NavBar className="navbar">
-                <TodayBtn>Today</TodayBtn>
+                <TodayBtn onClick={moveToday}>Today</TodayBtn>
                 <MonthContainer>
                     <ChangeMonthBtn className="prev" onClick={prevMonth}>
                         Prev
                     </ChangeMonthBtn>
-                    <Current className="current">{dayObj.format("MMM DD YYYY")}</Current>
+                    <Current className="current">{dayObj.format("MMM YYYY")}</Current>
                     <ChangeMonthBtn className="next" onClick={nextMonth}>
                         Next
                     </ChangeMonthBtn>
                 </MonthContainer>
-                <DarkModeBtn className="dark_btn">Dark</DarkModeBtn>
             </NavBar>
         </React.Fragment>
     );

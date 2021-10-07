@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
         --color-blue: #73aace;
         --color-dark-blue: #1909ee;
         --color-yellow: #fff7d1;
-        --color-light-yellow: #F6F4F1;
+        --color-light-yellow: #dbd2c6;
         --color-orange: #feb546;
         --color-black: #000000;
         --color-dark-purple: #272C52;
@@ -58,7 +58,6 @@ body {
     margin: 0 auto;
     cursor: default;
     font-family: 'Gothic A1', sans-serif;
-    background-color: var(--color-light-yellow);
 }
 
 a {
