@@ -6,6 +6,7 @@ import "dayjs/locale/ko";
 import "dayjs/plugin/weekday";
 import Date from "./Date";
 import { actionCreators as modalActions } from "../redux/modules/modal";
+import { actionCreators as scheduleActions } from "../redux/modules/schedule";
 import { CalendarContainer, DayContainer, DateContainer, Day, ControlBtnContainer, CalendarBtn } from "../Styles/Style";
 
 const Calendar = () => {
@@ -14,6 +15,7 @@ const Calendar = () => {
     const dispatch = useDispatch();
     const dayObj = useSelector((state) => state.date.date);
     const todayData = useSelector((state) => state.date.now);
+    const mode = useSelector((state) => state.schedule.mode);
 
     const todayObj = {
         year: todayData.get("year"),
@@ -38,7 +40,8 @@ const Calendar = () => {
     const daysNextMonth = dayObjNextMonth.day();
     const NextdateId = `${dayObjNextMonth.get("year")}-${dayObjNextMonth.get("month") + 2}`;
 
-    const _showModal = (is_upload) => dispatch(modalActions.showModal(is_upload));
+    const _showUploadModal = (is_upload) => dispatch(modalActions.showModal(is_upload));
+    const changeMode = () => dispatch(scheduleActions.showCompleteSchedule());
 
     React.useEffect(() => {
         const targetDate = document.querySelector(".date" + todayObj.today.date());
@@ -80,10 +83,12 @@ const Calendar = () => {
                     ))}
                 </DateContainer>
                 <ControlBtnContainer>
-                    <CalendarBtn className="upload_btn" onClick={() => _showModal(true)}>
+                    <CalendarBtn className="upload_btn" onClick={() => _showUploadModal(true)}>
                         추가하기
                     </CalendarBtn>
-                    <CalendarBtn className="complete_check_btn">완료된 일정 보기</CalendarBtn>
+                    <CalendarBtn className="complete_check_btn" onClick={changeMode}>
+                        {mode === "all" ? "완료된 일정" : "모든 일정"}
+                    </CalendarBtn>
                 </ControlBtnContainer>
             </CalendarContainer>
         </React.Fragment>

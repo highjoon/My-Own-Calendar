@@ -10,12 +10,14 @@ const LOAD_SCHEDULE = "schedule/LOAD_SCHEDULE";
 const ADD_SCHEDULE = "schedule/ADD_SCHEDULE";
 const DELETE_SCHEDULE = "schedule/DELETE_SCHEDULE";
 const COMPLETE_SCHEDULE = "schedule/COMPLETE_SCHEDULE";
+const SHOW_COMPLETE_SCHEDULE = "schedule/SHOW_COMPLETE_SCHEDULE";
 
 // Action Creators
 const loadSchedule = createAction(LOAD_SCHEDULE, (schedules) => ({ schedules }));
 const addSchedule = createAction(ADD_SCHEDULE, (schedule) => ({ schedule }));
 const deleteSchedule = createAction(DELETE_SCHEDULE, (id) => ({ id }));
 const completeSchedule = createAction(COMPLETE_SCHEDULE, (id) => ({ id }));
+const showCompleteSchedule = createAction(SHOW_COMPLETE_SCHEDULE);
 
 // Thunk Creators
 const loadScheduleFB = () => (dispatch, getState) => {
@@ -57,6 +59,7 @@ const deleteScheduleFB = (id) => (dispatch, getState) => {
 // Initial State
 const initialState = {
     scheduleList: [],
+    mode: "all",
 };
 
 // Reducer
@@ -84,6 +87,10 @@ export default handleActions(
                     }
                 });
             }),
+        [SHOW_COMPLETE_SCHEDULE]: (state, action) =>
+            produce(state, (draft) => {
+                draft.mode = draft.mode === "all" ? "completed" : "all";
+            }),
     },
     initialState
 );
@@ -93,4 +100,5 @@ export const actionCreators = {
     addScheduleFB,
     deleteScheduleFB,
     completeScheduleFB,
+    showCompleteSchedule,
 };

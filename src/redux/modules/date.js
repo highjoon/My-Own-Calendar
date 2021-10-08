@@ -6,11 +6,9 @@ import "dayjs/locale/ko";
 dayjs.locale("ko");
 
 // Action Types
-const SET_NOW = "date/SET_NOW";
 const SET_DATE = "date/SET_DATE";
 
 // Action Creators
-const setNow = createAction(SET_NOW, () => ({ now: dayjs() }));
 const setDate = createAction(SET_DATE, (date) => ({ date }));
 
 // Initial State
@@ -22,10 +20,6 @@ const initialState = {
 // Reducer
 export default handleActions(
     {
-        [SET_NOW]: (state, action) =>
-            produce(state, (draft) => {
-                draft.now = action.payload.now;
-            }),
         [SET_DATE]: (state, action) =>
             produce(state, (draft) => {
                 draft.date = action.payload.date;
@@ -34,6 +28,4 @@ export default handleActions(
     initialState
 );
 
-export const actionCreators = {
-    setDate,
-};
+export const actionCreators = { setDate };
