@@ -17,6 +17,12 @@ export const TodayBtn = styled.button`
     border-radius: var(--size-border-radius);
     width: 60px;
     height: 40px;
+
+    ${({ theme }) => theme.device.tablet} {
+        font-size: 7px;
+        width: 40px;
+        height: 30px;
+    }
 `;
 
 export const MonthContainer = styled.div`
@@ -54,6 +60,11 @@ export const ChangeMonthBtn = styled.button`
     border-radius: var(--size-border-radius);
     width: 60px;
     height: 40px;
+
+    ${({ theme }) => theme.device.tablet} {
+        width: 40px;
+        height: 30px;
+    }
 `;
 
 // Calendar
@@ -133,6 +144,11 @@ export const CalendarBtn = styled.button`
 
     &.upload_btn {
         margin-bottom: 20px;
+    }
+
+    ${({ theme }) => theme.device.tablet} {
+        width: 60px;
+        height: 40px;
     }
 `;
 

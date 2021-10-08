@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# 📚 **My Own Calendar**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="https://user-images.githubusercontent.com/63948484/135273650-429805f6-4607-4049-8e0e-972db1762c60.png"
+width='500px' alt="나만의 단어장"/>
 
-## Available Scripts
+<br/>
 
-In the project directory, you can run:
+# **🔊 프로젝트 설명**
 
-### `yarn start`
+나만의 일정 관리 캘린더를 제작하는 미니 프로젝트입니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<br />
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# **📅 프로젝트 인원 및 기간**
 
-### `yarn test`
+-   1인 프로젝트
+-   3일 (21.10.07 ~ 21.10.09)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br/>
 
-### `yarn build`
+# **⚙️ 사용 기술 및 환경**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## **🔨 Project Structures**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+-   Firebase 서버리스 기반의 React 웹 어플리케이션
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br/>
 
-### `yarn eject`
+## **🧮 사용 기술**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+-   **React hooks**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+-   **styled-components를 사용한 스타일링**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+-   **React Router**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+-   **Redux**
 
-## Learn More
+<br/>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# 🔗 **페이지 링크**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+[My Own Calendar](https://my-own-calendar-2a1df.web.app/)
 
-### Code Splitting
+<br/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# **💡 요구 사항**
 
-### Analyzing the Bundle Size
+### **☑️ 메인 달력 뷰**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+-   dayjs와 CSS Grid 스타일링을 통해 메인 달력 뷰 작성
+-   각 일정 데이터는 Redux와 Firestore를 통해 관리
+-   각 일정 데이터는 **제목, 일자, 설명, 완료여부**로 구성
+-   완료된 일정만 볼 수 있는 필터링 기능 추가
 
-### Making a Progressive Web App
+<br/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### **☑️ 일정 추가**
 
-### Advanced Configuration
+-   React-Modal을 사용하여 주소 이동 없이 새로운 일정 추가 가능
+-   React Date Picker를 사용하여 날짜 선택 가능
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<br/>
 
-### Deployment
+### **☑️ 일정 완료 처리 및 삭제**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+-   각 일정은 완료 처리 및 삭제 가능
+-   수정 기능 추가 예정
 
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<br/>
