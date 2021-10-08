@@ -9,24 +9,25 @@ const Date = (props) => {
     const { className, thisDate, children } = props;
     const scheduleList = useSelector((state) => state.schedule.scheduleList);
     const mode = useSelector((state) => state.schedule.mode);
-    const _showModal = (is_upload, id) => dispatch(modalActions.showModal(is_upload, id));
+    const showModal = (is_upload, id) => dispatch(modalActions.showModal(is_upload, id));
 
     return (
         <React.Fragment>
             <DateBox className={className}>
                 <DateEach>{children}</DateEach>
-                {scheduleList.map((schedule, idx) => {
-                    if (schedule.date.join("-") === thisDate) {
-                        if (mode === "completed" && !schedule.is_complete) return;
-                        else {
+                {scheduleList
+                    .slice()
+                    .sort((a, b) => a.dateWithTime - b.dateWithTime)
+                    .map((schedule, idx) => {
+                        if (schedule.date.join("-") === thisDate) {
+                            if (mode === "completed" && !schedule.is_complete) return;
                             return (
-                                <Schedule key={idx} id={schedule.id} _onClick={() => _showModal(false, schedule.id)}>
-                                    {schedule.is_complete ? `(완)${schedule.title}` : `(미완)${schedule.title}`}
+                                <Schedule key={idx} id={schedule.id} _onClick={() => showModal(false, schedule.id)}>
+                                    {schedule.is_complete ? `(완료) ${schedule.title}` : `(미완료) ${schedule.title}`}
                                 </Schedule>
                             );
                         }
-                    }
-                })}
+                    })}
             </DateBox>
         </React.Fragment>
     );

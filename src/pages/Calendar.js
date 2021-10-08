@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import "dayjs/plugin/weekday";
-import Date from "./Date";
+import Date from "../components/Date";
 import { actionCreators as modalActions } from "../redux/modules/modal";
 import { actionCreators as scheduleActions } from "../redux/modules/schedule";
 import { CalendarContainer, DayContainer, DateContainer, Day, ControlBtnContainer, CalendarBtn } from "../Styles/Style";

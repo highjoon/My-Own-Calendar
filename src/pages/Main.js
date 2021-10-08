@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Calendar from "../components/Calendar";
+import Calendar from "../pages/Calendar";
 import HeaderBar from "../components/Header";
 import DetailModal from "../components/DetailModal";
 import UploadModal from "../components/UploadModal";

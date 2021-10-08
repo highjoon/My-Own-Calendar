@@ -72,6 +72,7 @@ export default handleActions(
         [ADD_SCHEDULE]: (state, action) =>
             produce(state, (draft) => {
                 draft.scheduleList.push(action.payload.schedule);
+                console.log(draft.scheduleList);
             }),
         [DELETE_SCHEDULE]: (state, action) =>
             produce(state, (draft) => {

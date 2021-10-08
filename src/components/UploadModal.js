@@ -21,7 +21,14 @@ const UploadModal = (props) => {
     const _closeModal = () => dispatch(modalActions.closeModal());
     const createNewSchedule = () => {
         let newTitle = scheduleTitle.current.value;
-        let newDate = scheduleDate.current.input.value.split(" ").map((x) => Number(x.substring(0, x.length - 1)));
+        let newDate = scheduleDate.current.input.value
+            .split(" ")
+            .map((x) => Number(x.substring(0, x.length - 1)))
+            .slice(0, 3);
+        let newDateWithTimes = scheduleDate.current.input.value
+            .split(" ")
+            .map((x) => x.substring(0, x.length - 1))
+            .reduce((a, b) => a + b);
         let newDesc = scheduleDesc.current.value;
 
         if (!newTitle || newDate.length === 1 || !newDesc) {
@@ -32,11 +39,10 @@ const UploadModal = (props) => {
         const newObj = {
             title: newTitle,
             date: newDate,
+            dateWithTime: parseInt(newDateWithTimes),
             desc: newDesc,
             is_complete: false,
         };
-
-        console.log(newObj);
 
         dispatch(scheduleActions.addScheduleFB(newObj));
         dispatch(modalActions.closeModal());
@@ -52,7 +58,9 @@ const UploadModal = (props) => {
                     selected={startDate}
                     locale={ko}
                     showTimeSelect
-                    dateFormat="yyyy년 MM월 dd일"
+                    timeIntervals={15}
+                    timeInputLabel="Time:"
+                    dateFormat="yyyy년 MM월 dd일 h시 mm분"
                     ref={scheduleDate}
                 />
                 <UploadContent placeholder="설명 추가" ref={scheduleDesc} />

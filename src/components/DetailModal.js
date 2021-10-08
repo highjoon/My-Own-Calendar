@@ -36,8 +36,8 @@ const DetailModal = (props) => {
                 <DetailTime>{`${target.date[0]}년 ${target.date[1]}월 ${target.date[2]}일`}</DetailTime>
                 <DetailContent>{target.desc}</DetailContent>
                 <DetailBtnContainer>
-                    <DeleteBtn onClick={deleteSchedule}>Delete</DeleteBtn>
-                    <CompleteBtn onClick={completeSchedule}>Complete</CompleteBtn>
+                    <DeleteBtn onClick={deleteSchedule}>삭제</DeleteBtn>
+                    <CompleteBtn onClick={completeSchedule}>{target.is_complete ? "취소" : "완료"}</CompleteBtn>
                 </DetailBtnContainer>
             </Modal>
         </React.Fragment>
