@@ -11,7 +11,6 @@ const UploadModal = (props) => {
     const dispatch = useDispatch();
 
     const modalIsOpen = useSelector((state) => state.modal.is_show);
-    const schedule = useSelector((state) => state.schedule.schedule);
 
     const [startDate, setStartDate] = useState(null);
 
@@ -19,10 +18,7 @@ const UploadModal = (props) => {
     let scheduleDate = useRef();
     let scheduleDesc = useRef();
 
-    const _closeModal = () => {
-        dispatch(modalActions.closeModal());
-    };
-
+    const _closeModal = () => dispatch(modalActions.closeModal());
     const createNewSchedule = () => {
         let newTitle = scheduleTitle.current.value;
         let newDate = scheduleDate.current.input.value.split(" ").map((x) => Number(x.substring(0, x.length - 1)));
@@ -33,9 +29,14 @@ const UploadModal = (props) => {
             return;
         }
 
-        const newObj = { title: newTitle, date: newDate, desc: newDesc };
+        const newObj = {
+            title: newTitle,
+            date: newDate,
+            desc: newDesc,
+            is_complete: false,
+        };
 
-        dispatch(scheduleActions.addSchedule(newObj));
+        dispatch(scheduleActions.addScheduleFB(newObj));
         dispatch(modalActions.closeModal());
     };
 

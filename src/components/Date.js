@@ -1,30 +1,33 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { actionCreators as modalActions } from "../redux/modules/modal";
-
 import Schedule from "../elements/Schedule";
 import { DateBox, DateEach } from "../Styles/Style";
 
 const Date = (props) => {
     const dispatch = useDispatch();
-    const { className, id, children } = props;
-    const currentId = id
+    const { className, thisDate, children } = props;
+    const _thisDate = thisDate
         .split("-")
         .map((x) => Number(x))
         .join("-");
+
     const scheduleList = useSelector((state) => state.schedule.scheduleList);
-    const _showModal = (is_upload, currentId) => dispatch(modalActions.showModal(is_upload, currentId));
+
+    let currentId = scheduleList.find((schedule) => schedule.date.join("-") === thisDate);
+    currentId ? (currentId = currentId.id) : (currentId = "");
+
+    const _showModal = (is_upload, date) => dispatch(modalActions.showModal(is_upload, date));
 
     return (
         <React.Fragment>
-            <DateBox className={className} id={id}>
+            <DateBox className={className} id={_thisDate}>
                 <DateEach>{children}</DateEach>
                 {scheduleList.map((schedule, idx) => {
-                    if (schedule.date.join("-") === currentId) {
+                    if (schedule.date.join("-") === thisDate) {
                         return (
-                            <Schedule key={idx} id={currentId} _onClick={() => _showModal(false, currentId)}>
-                                {schedule.title}
+                            <Schedule key={idx} id={currentId} _onClick={() => _showModal(false, thisDate)}>
+                                {schedule.is_complete ? `(완)${schedule.title}` : `(미완)${schedule.title}`}
                             </Schedule>
                         );
                     }
