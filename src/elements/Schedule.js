@@ -25,6 +25,14 @@ const ScheduleBtn = styled.button`
     font-size: var(--font-micro);
     white-space: nowrap;
     overflow: hidden;
+
+    ${({ theme }) => theme.device.tablet} {
+        font-size: 4px;
+    }
+
+    ${({ theme }) => theme.device.mobile} {
+        color: transparent;
+    }
 `;
 
 export default Schedule;

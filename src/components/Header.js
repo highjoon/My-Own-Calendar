@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as dateActions } from "../redux/modules/date";
+import title from "../img/title.png";
 import styled from "styled-components";
 import { Button } from "../elements";
 
@@ -23,6 +24,7 @@ const HeaderBar = (props) => {
     return (
         <React.Fragment>
             <NavBar className="navbar">
+                <TitleImg src={title} alt="title" />
                 <Button className="today" _onClick={moveToday} text="Today" />
                 <MonthContainer>
                     <Button className="prev" text="Prev" _onClick={prevMonth} />
@@ -39,16 +41,27 @@ const NavBar = styled.nav`
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 80px;
+    height: 100px;
     background-color: var(--color-yellow);
     border-bottom: 2px solid var(--color-black);
+`;
+
+const TitleImg = styled.img`
+    width: 150px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+
+    ${({ theme }) => theme.device.tablet} {
+        display: none;
+    }
 `;
 
 const MonthContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 500px;
+    width: 400px;
 
     ${({ theme }) => theme.device.tablet} {
         width: 300px;
@@ -69,8 +82,7 @@ const Current = styled.span`
     }
 
     ${({ theme }) => theme.device.mobile} {
-        font-size: var(--font-micro);
-        margin: 0 5px;
+        font-size: 10px;
     }
 `;
 

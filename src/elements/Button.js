@@ -61,6 +61,7 @@ const DefaultButton = styled.button`
 
         ${({ theme }) => theme.device.tablet} {
             width: 50px;
+            margin: 0 0;
         }
     }
 
