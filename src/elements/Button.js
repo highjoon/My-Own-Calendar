@@ -48,31 +48,69 @@ const DefaultButton = styled.button`
     background-color: var(--color-light-yellow);
     color: var(--color-black);
     font-size: ${(props) => props.fontSize};
-    border: 1px solid black;
+    border: 1px solid var(--color-black);
     border-radius: var(--size-border-radius);
     margin: 0 20px;
+    font-weight: var(--weight-bold);
+    color: var(--color-white);
+
+    &.today {
+        width: 110px;
+        border: 1px solid var(--color-dark-pink);
+        background-color: var(--color-dark-pink);
+
+        ${({ theme }) => theme.device.tablet} {
+            width: 50px;
+        }
+    }
+
+    &.prev,
+    &.next {
+        border: 1px solid var(--color-green);
+        background-color: var(--color-green);
+    }
 
     ${({ theme }) => theme.device.tablet} {
         font-size: 7px;
         width: 40px;
         height: 30px;
     }
+
+    &.upload {
+        width: 110px;
+        border: 1px solid var(--color-light-cyan);
+        background-color: var(--color-light-cyan);
+    }
+
+    &.detailBtn {
+        width: 110px;
+        border: 1px solid var(--color-crimson);
+        background-color: var(--color-crimson);
+    }
 `;
 
 const RectButton = styled.button`
-    width: 100px;
+    width: 110px;
     height: 50px;
-    border: 1px solid var(--color-black);
-    border-radius: var(--size-border-radius);
-    background-color: var(--color-light-yellow);
+    border: 1px solid var(--color-light-orange);
+    border-radius: 20px;
+    background-color: var(--color-light-orange);
+    font-size: var(--font-small);
+    font-weight: var(--weight-bold);
+    color: var(--color-white);
 
     &.upload_btn {
+        background-color: var(--color-blue);
+        border: 1px solid var(--color--blue);
+        color: var(--color-white);
         margin-bottom: 20px;
     }
 
     ${({ theme }) => theme.device.tablet} {
-        width: 60px;
+        width: 70px;
         height: 40px;
+        font-size: var(--font-micro);
+        font-weight: var(--weight-regular);
     }
 `;
 

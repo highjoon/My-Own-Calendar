@@ -34,10 +34,11 @@ const DetailModal = (props) => {
         year: target.date[0],
         month: target.date[1],
         date: target.date[2],
-        hour: parseInt(String(target.dateWithTime).slice(-4, -2)),
-        minutes: parseInt(String(target.dateWithTime).slice(-2)),
+        hour: String(target.dateWithTime).slice(-4, -2),
+        minutes: String(target.dateWithTime).slice(-2),
         isComplete: target.is_complete,
     };
+    console.log(targetObj);
 
     return (
         <React.Fragment>
@@ -47,8 +48,8 @@ const DetailModal = (props) => {
                     <DetailTime>{`${targetObj.year}년 ${targetObj.month}월 ${targetObj.date}일 ${targetObj.hour}시 ${targetObj.minutes}분`}</DetailTime>
                     <DetailContent>{target.desc}</DetailContent>
                     <DetailBtnContainer>
-                        <Button text="삭제" right={10} _onClick={deleteSchedule} />
-                        <Button text={targetObj.isComplete ? "취소" : "완료"} _onClick={completeSchedule} />
+                        <Button className="detailBtn" text="삭제" _onClick={deleteSchedule} />
+                        <Button className="detailBtn" text={targetObj.isComplete ? "취소" : "완료"} _onClick={completeSchedule} />
                     </DetailBtnContainer>
                 </DetailContainer>
             </Modal>

@@ -15,20 +15,15 @@ const GlobalStyle = createGlobalStyle`
     :root {
         /* Color */
         --color-white: #ffffff;
-        --color-light-white: #eeeeee;
-        --color-dark-white: #bdbdbd;
-        --color-pink: #fe918d;
-        --color-dark-pink: #FF63B1;
-        --color-dark-grey: #cdcdcd;
-        --color-grey: #616161;
+        --color-dark-pink: #DD6789;
         --color-light-grey: #7c7979;
-        --color-blue: #73aace;
-        --color-dark-blue: #1909ee;
+        --color-blue: #0E78D1;
         --color-yellow: #fff7d1;
-        --color-light-yellow: #dbd2c6;
-        --color-orange: #feb546;
+        --color-light-cyan: #17ADAC;
+        --color-light-orange: #EE963E;
         --color-black: #000000;
-        --color-dark-purple: #272C52;
+        --color-green: #78AD27;
+        --color-crimson: #F23E33;
 
         /* Font size */
         --font-large: 48px;
@@ -38,6 +33,7 @@ const GlobalStyle = createGlobalStyle`
         --font-micro: 14px;
 
         /* Font weight */
+        --weight-heavy-bold: 900;
         --weight-bold: 700;
         --weight-semi-bold: 600;
         --weight-regular: 400;

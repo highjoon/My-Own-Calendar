@@ -66,7 +66,7 @@ const UploadModal = (props) => {
                     ref={scheduleDate}
                 />
                 <Input type="textarea" placeholder="설명 추가" _ref={scheduleDesc} />
-                <Button text="Upload" _onClick={createNewSchedule} />
+                <Button className="upload" text="Upload" _onClick={createNewSchedule} />
             </Modal>
         </React.Fragment>
     );

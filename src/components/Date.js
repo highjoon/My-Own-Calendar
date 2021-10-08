@@ -22,8 +22,8 @@ const Date = (props) => {
                         if (schedule.date.join("-") === thisDate) {
                             if (mode === "completed" && !schedule.is_complete) return;
 
-                            const hour = parseInt(String(schedule.dateWithTime).slice(-4, -2));
-                            const minutes = parseInt(String(schedule.dateWithTime).slice(-2));
+                            const hour = String(schedule.dateWithTime).slice(-4, -2);
+                            const minutes = String(schedule.dateWithTime).slice(-2);
 
                             return (
                                 <Schedule key={idx} id={schedule.id} _onClick={() => showModal(false, schedule.id)}>

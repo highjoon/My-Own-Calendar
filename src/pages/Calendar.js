@@ -85,8 +85,8 @@ const Calendar = () => {
                     ))}
                 </DateContainer>
                 <ControlBtnContainer>
-                    <Button is_rect text="➕" className="upload_btn" _onClick={() => _showUploadModal(true)} />
-                    <Button is_rect text={mode === "all" ? "✅" : "✔️"} className="complete_check_btn" _onClick={changeMode} />
+                    <Button is_rect text="추가하기" className="upload_btn" _onClick={() => _showUploadModal(true)} />
+                    <Button is_rect text={mode === "all" ? "완료된 일정" : "모든 일정"} className="complete_check_btn" _onClick={changeMode} />
                 </ControlBtnContainer>
             </CalendarContainer>
         </React.Fragment>

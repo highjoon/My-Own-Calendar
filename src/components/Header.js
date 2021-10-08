@@ -23,10 +23,10 @@ const HeaderBar = (props) => {
     return (
         <React.Fragment>
             <NavBar className="navbar">
-                <Button _onClick={moveToday} text="Today" />
+                <Button className="today" _onClick={moveToday} text="Today" />
                 <MonthContainer>
                     <Button className="prev" text="Prev" _onClick={prevMonth} />
-                    <Current className="current">{dayObj.format("MMM YYYY")}</Current>
+                    <Current className="current">{dayObj.format("YYYY년 MM월")}</Current>
                     <Button className="next" text="Next" _onClick={nextMonth} />
                 </MonthContainer>
             </NavBar>
@@ -40,7 +40,7 @@ const NavBar = styled.nav`
     justify-content: center;
     width: 100%;
     height: 80px;
-    background-color: var(--color-white);
+    background-color: var(--color-yellow);
     border-bottom: 2px solid var(--color-black);
 `;
 
@@ -51,11 +51,11 @@ const MonthContainer = styled.div`
     width: 500px;
 
     ${({ theme }) => theme.device.tablet} {
-        width: 400px;
+        width: 300px;
     }
 
     ${({ theme }) => theme.device.mobile} {
-        width: 250px;
+        width: 150px;
     }
 `;
 
@@ -69,7 +69,7 @@ const Current = styled.span`
     }
 
     ${({ theme }) => theme.device.mobile} {
-        font-size: var(--font-small);
+        font-size: var(--font-micro);
         margin: 0 5px;
     }
 `;
