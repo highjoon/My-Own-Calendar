@@ -1,8 +1,5 @@
 # 📚 **My Own Calendar**
 
-<img src="https://user-images.githubusercontent.com/63948484/135273650-429805f6-4607-4049-8e0e-972db1762c60.png"
-width='500px' alt="나만의 단어장"/>
-
 <br/>
 
 # **🔊 프로젝트 설명**
