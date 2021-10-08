@@ -9,14 +9,9 @@ const DetailModal = (props) => {
     const dispatch = useDispatch();
     const modalIsOpen = useSelector((state) => state.modal.is_show);
     const scheduleList = useSelector((state) => state.schedule.scheduleList);
+    const thisDateId = useSelector((state) => state.modal.id);
 
-    const thisDate = useSelector((state) => state.modal.id)
-        .split("-")
-        .map((x) => Number(x))
-        .join("-");
-
-    let currentId = scheduleList.find((schedule) => schedule.date.join("-") === thisDate);
-    currentId ? (currentId = currentId.id) : (currentId = "");
+    let currentId = scheduleList.find((schedule) => schedule.id === thisDateId).id;
 
     const _closeModal = () => dispatch(modalActions.closeModal());
 
@@ -25,8 +20,13 @@ const DetailModal = (props) => {
         dispatch(modalActions.closeModal());
     };
 
+    const completeSchedule = () => {
+        dispatch(scheduleActions.completeScheduleFB(currentId));
+        dispatch(modalActions.closeModal());
+    };
+
     const target = scheduleList.find((schedule) => {
-        return schedule.date.join("-") === thisDate;
+        return schedule.id === thisDateId;
     });
 
     return (
@@ -37,7 +37,7 @@ const DetailModal = (props) => {
                 <DetailContent>{target.desc}</DetailContent>
                 <DetailBtnContainer>
                     <DeleteBtn onClick={deleteSchedule}>Delete</DeleteBtn>
-                    <CompleteBtn>Complete</CompleteBtn>
+                    <CompleteBtn onClick={completeSchedule}>Complete</CompleteBtn>
                 </DetailBtnContainer>
             </Modal>
         </React.Fragment>

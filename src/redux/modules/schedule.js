@@ -15,7 +15,7 @@ const COMPLETE_SCHEDULE = "schedule/COMPLETE_SCHEDULE";
 const loadSchedule = createAction(LOAD_SCHEDULE, (schedules) => ({ schedules }));
 const addSchedule = createAction(ADD_SCHEDULE, (schedule) => ({ schedule }));
 const deleteSchedule = createAction(DELETE_SCHEDULE, (id) => ({ id }));
-const completeSchedule = createAction(COMPLETE_SCHEDULE);
+const completeSchedule = createAction(COMPLETE_SCHEDULE, (id) => ({ id }));
 
 // Thunk Creators
 const loadScheduleFB = () => (dispatch, getState) => {
@@ -37,6 +37,15 @@ const addScheduleFB = (schedule) => (dispatch, getState) => {
             const _schedule = { ...schedule, id: doc.id };
             dispatch(addSchedule(_schedule));
         })
+        .catch((err) => console.log(err));
+};
+
+const completeScheduleFB = (id) => (dispatch, getState) => {
+    const data = getState().schedule.scheduleList.find((schedule) => schedule.id === id);
+    scheduleDB
+        .doc(id)
+        .update({ is_complete: !data.is_complete })
+        .then((res) => dispatch(completeSchedule(id)))
         .catch((err) => console.log(err));
 };
 
@@ -68,6 +77,13 @@ export default handleActions(
         [COMPLETE_SCHEDULE]: (state, action) =>
             produce(state, (draft) => {
                 console.log(draft.scheduleList);
+                // draft.scheduleList = action.payload.schedules;
+                // draft.scheduleList = draft.scheduleList.filter((schedule) => schedule.id !== action.payload.id);
+                // draft.scheduleList = draft.scheduleList.forEach((schedule) => {
+                //     if (schedule.id === action.payload.id) {
+                //         !schedule.is_complete ? (schedule.is_complete = true) : (schedule.is_complete = false);
+                //     }
+                // });
                 // draft.scheduleList.is_complete = draft.scheduleList.is_complete ? false : true;
             }),
     },
@@ -78,5 +94,5 @@ export const actionCreators = {
     loadScheduleFB,
     addScheduleFB,
     deleteScheduleFB,
-    completeSchedule,
+    completeScheduleFB,
 };

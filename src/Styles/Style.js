@@ -208,8 +208,9 @@ export const UploadTitle = styled.input`
 `;
 
 export const UploadDate = styled(DatePicker)`
+    width: 400px;
     text-align: center;
-    font-size: var(--font-medium);
+    font-size: var(--font-regular);
     outline: none;
     box-sizing: border-box;
     border: none;

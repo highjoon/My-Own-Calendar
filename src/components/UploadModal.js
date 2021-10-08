@@ -36,6 +36,8 @@ const UploadModal = (props) => {
             is_complete: false,
         };
 
+        console.log(newObj);
+
         dispatch(scheduleActions.addScheduleFB(newObj));
         dispatch(modalActions.closeModal());
     };
@@ -49,6 +51,7 @@ const UploadModal = (props) => {
                     onChange={(date) => setStartDate(date)}
                     selected={startDate}
                     locale={ko}
+                    showTimeSelect
                     dateFormat="yyyy년 MM월 dd일"
                     ref={scheduleDate}
                 />
