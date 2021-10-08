@@ -84,10 +84,10 @@ const Calendar = () => {
                 </DateContainer>
                 <ControlBtnContainer>
                     <CalendarBtn className="upload_btn" onClick={() => _showUploadModal(true)}>
-                        추가하기
+                        ➕
                     </CalendarBtn>
                     <CalendarBtn className="complete_check_btn" onClick={changeMode}>
-                        {mode === "all" ? "완료된 일정" : "모든 일정"}
+                        {mode === "all" ? "✅" : "✔️"}
                     </CalendarBtn>
                 </ControlBtnContainer>
             </CalendarContainer>

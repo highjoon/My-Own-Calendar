@@ -24,11 +24,29 @@ export const MonthContainer = styled.div`
     align-items: center;
     justify-content: center;
     width: 500px;
+
+    ${({ theme }) => theme.device.tablet} {
+        width: 400px;
+    }
+
+    ${({ theme }) => theme.device.mobile} {
+        width: 250px;
+    }
 `;
 
 export const Current = styled.span`
     font-size: var(--font-medium);
     margin: 0 20px;
+
+    ${({ theme }) => theme.device.tablet} {
+        font-size: var(--font-regular);
+        margin: 0 10px;
+    }
+
+    ${({ theme }) => theme.device.mobile} {
+        font-size: var(--font-small);
+        margin: 0 5px;
+    }
 `;
 
 export const ChangeMonthBtn = styled.button`
@@ -124,11 +142,9 @@ export const DetailContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    width: 60%;
-    height: 60%;
+    width: 100%;
+    height: 80%;
     margin: 0 auto;
-    border: 1px solid var(--color-black);
-    border-radius: var(--size-border-radius);
     text-align: center;
     background-color: var(--color-white);
     position: absolute;
@@ -138,29 +154,49 @@ export const DetailContainer = styled.div`
 `;
 
 export const DetailTitle = styled.h1`
-    width: 80%;
-    font-size: var(--font-large);
+    width: 100%;
+    font-size: var(--font-medium);
+
+    ${({ theme }) => theme.device.tablet} {
+        width: 50%;
+        font-size: var(--font-regular);
+    }
+
+    ${({ theme }) => theme.device.mobile} {
+        width: 20%;
+        font-size: var(--font-small);
+    }
 `;
 
 export const DetailTime = styled.p`
     width: 80%;
-    font-size: var(--font-medium);
+    font-size: var(--font-regular);
+
+    ${({ theme }) => theme.device.tablet} {
+        font-size: var(--font-small);
+    }
+
+    ${({ theme }) => theme.device.mobile} {
+        font-size: var(--font-micro);
+    }
 `;
 
 export const DetailContent = styled.p`
     width: 80%;
+
+    font-size: var(--font-medium);
+
+    ${({ theme }) => theme.device.tablet} {
+        font-size: var(--font-regular);
+    }
+
+    ${({ theme }) => theme.device.mobile} {
+        font-size: var(--font-small);
+    }
 `;
 
 export const DetailBtnContainer = styled.div`
-    width: 80%;
-`;
-
-export const EditBtn = styled.button`
-    border: 1px solid black;
-    border-radius: var(--size-border-radius);
-    width: 90px;
-    height: 40px;
-    margin-left: 10px;
+    width: 100%;
 `;
 
 export const DeleteBtn = styled.button`
@@ -169,6 +205,21 @@ export const DeleteBtn = styled.button`
     width: 90px;
     height: 40px;
     margin-left: 10px;
+    font-size: var(--font-regular);
+
+    ${({ theme }) => theme.device.tablet} {
+        width: 80px;
+        height: 30px;
+        margin-left: 7px;
+        font-size: var(--font-small);
+    }
+
+    ${({ theme }) => theme.device.mobile} {
+        width: 70px;
+        height: 20px;
+        margin-left: 3px;
+        font-size: var(--font-micro);
+    }
 `;
 
 export const CompleteBtn = styled.button`
@@ -177,6 +228,21 @@ export const CompleteBtn = styled.button`
     width: 90px;
     height: 40px;
     margin-left: 10px;
+    font-size: var(--font-regular);
+
+    ${({ theme }) => theme.device.tablet} {
+        width: 80px;
+        height: 30px;
+        margin-left: 7px;
+        font-size: var(--font-small);
+    }
+
+    ${({ theme }) => theme.device.mobile} {
+        width: 70px;
+        height: 20px;
+        margin-left: 3px;
+        font-size: var(--font-micro);
+    }
 `;
 
 // Upload
@@ -248,7 +314,7 @@ export const ModalStyles = {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "space-evenly",
-        width: "60%",
+        width: "50%",
         height: "60%",
         margin: "0 auto",
         border: "1px solid var(--color-black)",

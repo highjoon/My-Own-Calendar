@@ -21,9 +21,13 @@ const Date = (props) => {
                     .map((schedule, idx) => {
                         if (schedule.date.join("-") === thisDate) {
                             if (mode === "completed" && !schedule.is_complete) return;
+
+                            const hour = parseInt(String(schedule.dateWithTime).slice(-4, -2));
+                            const minutes = parseInt(String(schedule.dateWithTime).slice(-2));
+
                             return (
                                 <Schedule key={idx} id={schedule.id} _onClick={() => showModal(false, schedule.id)}>
-                                    {schedule.is_complete ? `(완료) ${schedule.title}` : `(미완료) ${schedule.title}`}
+                                    {schedule.is_complete ? `✅ ${hour}:${minutes} ${schedule.title}` : `${hour}:${minutes} ${schedule.title}`}
                                 </Schedule>
                             );
                         }

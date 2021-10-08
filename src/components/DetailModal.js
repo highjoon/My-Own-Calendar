@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Modal from "react-modal";
 import { actionCreators as modalActions } from "../redux/modules/modal";
 import { actionCreators as scheduleActions } from "../redux/modules/schedule";
-import { DetailTitle, DetailTime, DetailContent, DetailBtnContainer, DeleteBtn, CompleteBtn, ModalStyles } from "../Styles/Style";
+import { DetailTitle, DetailTime, DetailContent, DetailBtnContainer, DeleteBtn, CompleteBtn, ModalStyles, DetailContainer } from "../Styles/Style";
 
 const DetailModal = (props) => {
     const dispatch = useDispatch();
@@ -41,13 +41,15 @@ const DetailModal = (props) => {
     return (
         <React.Fragment>
             <Modal isOpen={modalIsOpen} onRequestClose={_closeModal} style={ModalStyles}>
-                <DetailTitle>{targetObj.isComplete ? `(완료됨) ${target.title}` : `(미완료) ${target.title}`}</DetailTitle>
-                <DetailTime>{`${targetObj.year}년 ${targetObj.month}월 ${targetObj.date}일 ${targetObj.hour}시 ${targetObj.minutes}분`}</DetailTime>
-                <DetailContent>{target.desc}</DetailContent>
-                <DetailBtnContainer>
-                    <DeleteBtn onClick={deleteSchedule}>삭제</DeleteBtn>
-                    <CompleteBtn onClick={completeSchedule}>{targetObj.isComplete ? "취소" : "완료"}</CompleteBtn>
-                </DetailBtnContainer>
+                <DetailContainer>
+                    <DetailTitle>{targetObj.isComplete ? `✅ ${target.title}` : `${target.title}`}</DetailTitle>
+                    <DetailTime>{`${targetObj.year}년 ${targetObj.month}월 ${targetObj.date}일 ${targetObj.hour}시 ${targetObj.minutes}분`}</DetailTime>
+                    <DetailContent>{target.desc}</DetailContent>
+                    <DetailBtnContainer>
+                        <DeleteBtn onClick={deleteSchedule}>삭제</DeleteBtn>
+                        <CompleteBtn onClick={completeSchedule}>{targetObj.isComplete ? "취소" : "완료"}</CompleteBtn>
+                    </DetailBtnContainer>
+                </DetailContainer>
             </Modal>
         </React.Fragment>
     );

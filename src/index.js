@@ -6,9 +6,14 @@ import App from "./shared/App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./redux/configureStore";
 
+import { ThemeProvider } from "styled-components";
+import theme from "./Styles/theme";
+
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <ThemeProvider theme={theme}>
+            <App />
+        </ThemeProvider>
     </Provider>,
     document.getElementById("root")
 );
