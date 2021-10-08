@@ -60,7 +60,7 @@ const UploadModal = (props) => {
                     showTimeSelect
                     timeIntervals={15}
                     timeInputLabel="Time:"
-                    dateFormat="yyyy년 MM월 dd일 h시 mm분"
+                    dateFormat="yyyy년 MM월 dd일 hh시 mm분"
                     ref={scheduleDate}
                 />
                 <UploadContent placeholder="설명 추가" ref={scheduleDesc} />
