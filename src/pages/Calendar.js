@@ -7,7 +7,9 @@ import "dayjs/plugin/weekday";
 import Date from "../components/Date";
 import { actionCreators as modalActions } from "../redux/modules/modal";
 import { actionCreators as scheduleActions } from "../redux/modules/schedule";
-import { CalendarContainer, DayContainer, DateContainer, Day, ControlBtnContainer, CalendarBtn } from "../Styles/Style";
+import { CalendarContainer, DayContainer, DateContainer, Day, ControlBtnContainer } from "../Styles/Style";
+
+import { Button } from "../elements";
 
 const Calendar = () => {
     const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -83,12 +85,8 @@ const Calendar = () => {
                     ))}
                 </DateContainer>
                 <ControlBtnContainer>
-                    <CalendarBtn className="upload_btn" onClick={() => _showUploadModal(true)}>
-                        ➕
-                    </CalendarBtn>
-                    <CalendarBtn className="complete_check_btn" onClick={changeMode}>
-                        {mode === "all" ? "✅" : "✔️"}
-                    </CalendarBtn>
+                    <Button is_rect text="➕" className="upload_btn" _onClick={() => _showUploadModal(true)} />
+                    <Button is_rect text={mode === "all" ? "✅" : "✔️"} className="complete_check_btn" _onClick={changeMode} />
                 </ControlBtnContainer>
             </CalendarContainer>
         </React.Fragment>

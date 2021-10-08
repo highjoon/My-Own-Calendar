@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as modalActions } from "../redux/modules/modal";
-import Schedule from "../elements/Schedule";
-import { DateBox, DateEach } from "../Styles/Style";
+import styled from "styled-components";
+import { Schedule } from "../elements";
 
 const Date = (props) => {
     const dispatch = useDispatch();
@@ -36,5 +36,31 @@ const Date = (props) => {
         </React.Fragment>
     );
 };
+
+const DateBox = styled.div`
+    border: 2px solid var(--color-black);
+    border-top: none;
+    border-right: none;
+    white-space: nowrap;
+    overflow: hidden;
+
+    &:nth-child(7n) {
+        border-right: 2px solid var(--color-black);
+    }
+
+    &:nth-child(1n) {
+        border-left: 2px solid var(--color-black);
+    }
+
+    &.faded {
+        color: var(--color-light-grey);
+    }
+`;
+
+const DateEach = styled.div`
+    width: 100%;
+    text-align: center;
+    font-size: var(--font-regular);
+`;
 
 export default Date;

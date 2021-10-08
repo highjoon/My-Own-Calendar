@@ -1,11 +1,13 @@
 import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Modal from "react-modal";
+import styled from "styled-components";
+import DatePicker from "react-datepicker";
 import ko from "date-fns/esm/locale/ko";
 import "react-datepicker/dist/react-datepicker.css";
 import { actionCreators as modalActions } from "../redux/modules/modal";
 import { actionCreators as scheduleActions } from "../redux/modules/schedule";
-import { UploadTitle, UploadDate, UploadContent, UploadBtn, ModalStyles } from "../Styles/Style";
+import { Button, Input, ModalStyles } from "../elements";
 
 const UploadModal = (props) => {
     const dispatch = useDispatch();
@@ -51,7 +53,7 @@ const UploadModal = (props) => {
     return (
         <React.Fragment>
             <Modal isOpen={modalIsOpen} onRequestClose={_closeModal} style={ModalStyles}>
-                <UploadTitle type="text" placeholder="제목 추가" ref={scheduleTitle} />
+                <Input type="text" placeholder="제목 추가" _ref={scheduleTitle} />
                 <UploadDate
                     placeholderText="날짜를 선택해주세요." //
                     onChange={(date) => setStartDate(date)}
@@ -63,11 +65,22 @@ const UploadModal = (props) => {
                     dateFormat="yyyy년 MM월 dd일 hh시 mm분"
                     ref={scheduleDate}
                 />
-                <UploadContent placeholder="설명 추가" ref={scheduleDesc} />
-                <UploadBtn onClick={createNewSchedule}>Upload</UploadBtn>
+                <Input type="textarea" placeholder="설명 추가" _ref={scheduleDesc} />
+                <Button text="Upload" _onClick={createNewSchedule} />
             </Modal>
         </React.Fragment>
     );
 };
+
+const UploadDate = styled(DatePicker)`
+    width: 400px;
+    text-align: center;
+    font-size: var(--font-regular);
+    outline: none;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid var(--color-light-grey);
+    padding: 10px 10px;
+`;
 
 export default UploadModal;

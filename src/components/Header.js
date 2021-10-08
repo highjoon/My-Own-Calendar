@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as dateActions } from "../redux/modules/date";
-import { NavBar, TodayBtn, MonthContainer, ChangeMonthBtn, Current } from "../Styles/Style";
+import styled from "styled-components";
+import { Button } from "../elements";
 
 const HeaderBar = (props) => {
     const dispatch = useDispatch();
@@ -22,19 +23,55 @@ const HeaderBar = (props) => {
     return (
         <React.Fragment>
             <NavBar className="navbar">
-                <TodayBtn onClick={moveToday}>Today</TodayBtn>
+                <Button _onClick={moveToday} text="Today" />
                 <MonthContainer>
-                    <ChangeMonthBtn className="prev" onClick={prevMonth}>
-                        Prev
-                    </ChangeMonthBtn>
+                    <Button className="prev" text="Prev" _onClick={prevMonth} />
                     <Current className="current">{dayObj.format("MMM YYYY")}</Current>
-                    <ChangeMonthBtn className="next" onClick={nextMonth}>
-                        Next
-                    </ChangeMonthBtn>
+                    <Button className="next" text="Next" _onClick={nextMonth} />
                 </MonthContainer>
             </NavBar>
         </React.Fragment>
     );
 };
+
+const NavBar = styled.nav`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80px;
+    background-color: var(--color-white);
+    border-bottom: 2px solid var(--color-black);
+`;
+
+const MonthContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+
+    ${({ theme }) => theme.device.tablet} {
+        width: 400px;
+    }
+
+    ${({ theme }) => theme.device.mobile} {
+        width: 250px;
+    }
+`;
+
+const Current = styled.span`
+    font-size: var(--font-medium);
+    margin: 0 20px;
+
+    ${({ theme }) => theme.device.tablet} {
+        font-size: var(--font-regular);
+        margin: 0 10px;
+    }
+
+    ${({ theme }) => theme.device.mobile} {
+        font-size: var(--font-small);
+        margin: 0 5px;
+    }
+`;
 
 export default HeaderBar;
