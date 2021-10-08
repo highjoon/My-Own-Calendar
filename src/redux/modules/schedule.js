@@ -76,15 +76,13 @@ export default handleActions(
             }),
         [COMPLETE_SCHEDULE]: (state, action) =>
             produce(state, (draft) => {
-                console.log(draft.scheduleList);
-                // draft.scheduleList = action.payload.schedules;
-                // draft.scheduleList = draft.scheduleList.filter((schedule) => schedule.id !== action.payload.id);
-                // draft.scheduleList = draft.scheduleList.forEach((schedule) => {
-                //     if (schedule.id === action.payload.id) {
-                //         !schedule.is_complete ? (schedule.is_complete = true) : (schedule.is_complete = false);
-                //     }
-                // });
-                // draft.scheduleList.is_complete = draft.scheduleList.is_complete ? false : true;
+                draft.scheduleList = draft.scheduleList.map((schedule) => {
+                    if (schedule.id === action.payload.id) {
+                        return { ...schedule, is_complete: !schedule.is_complete };
+                    } else {
+                        return schedule;
+                    }
+                });
             }),
     },
     initialState
