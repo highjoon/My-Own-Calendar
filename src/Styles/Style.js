@@ -71,11 +71,12 @@ export const DateContainer = styled.div`
     height: 100%;
 `;
 
-export const Date = styled.div`
-    width: 100%;
+export const DateBox = styled.div`
     border: 2px solid var(--color-black);
     border-top: none;
     border-right: none;
+    white-space: nowrap;
+    overflow: hidden;
 
     &:nth-child(7n) {
         border-right: 2px solid var(--color-black);
@@ -88,6 +89,12 @@ export const Date = styled.div`
     &.faded {
         color: var(--color-light-grey);
     }
+`;
+
+export const DateEach = styled.div`
+    width: 100%;
+    text-align: center;
+    font-size: var(--font-regular);
 `;
 
 export const ControlBtnContainer = styled.div`

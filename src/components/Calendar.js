@@ -4,15 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import "dayjs/plugin/weekday";
+import Date from "./Date";
 import { actionCreators as modalActions } from "../redux/modules/modal";
-import { CalendarContainer, DayContainer, DateContainer, Date, Day, ControlBtnContainer, CalendarBtn } from "../Styles/Style";
+import { CalendarContainer, DayContainer, DateContainer, Day, ControlBtnContainer, CalendarBtn } from "../Styles/Style";
 
 const Calendar = () => {
-    const dispatch = useDispatch();
+    const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-    const _showModal = (is_upload) => {
-        dispatch(modalActions.showModal(is_upload));
-    };
+    const dispatch = useDispatch();
 
     const dayObj = useSelector((state) => state.date.date);
     const todayObj = useSelector((state) => state.date.now);
@@ -23,8 +22,6 @@ const Calendar = () => {
     const todayDate = todayObj.get("date");
     const today = dayObj.clone().year(todayYear).month(todayMonth).date(todayDate);
 
-    const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
     const currentYear = dayObj.year();
     const currentMonth = dayObj.month();
     const daysCurrentMonth = dayObj.daysInMonth();
@@ -34,6 +31,12 @@ const Calendar = () => {
 
     const dayObjNextMonth = dayjs(`${currentYear}-${currentMonth + 1}-${daysCurrentMonth}`);
     const daysNextMonth = dayObjNextMonth.day();
+
+    const _showModal = (is_upload) => dispatch(modalActions.showModal(is_upload));
+
+    const dateId = `${dayObj.get("year")}-${dayObj.get("month") + 1}`;
+    const PrevdateId = `${dayObjPrevMonth.get("year")}-${dayObjPrevMonth.get("month")}`;
+    const NextdateId = `${dayObjNextMonth.get("year")}-${dayObjNextMonth.get("month") + 2}`;
 
     React.useEffect(() => {
         const targetDate = document.querySelector(".date" + today.date());
@@ -56,18 +59,18 @@ const Calendar = () => {
                 </DayContainer>
                 <DateContainer className="dateContainer">
                     {range(daysPrevMonth).map((i) => (
-                        <Date className="faded" key={i}>
+                        <Date className="faded" key={i} id={`${PrevdateId}-${dayObjPrevMonth.subtract(daysPrevMonth - i, "day").date()}`}>
                             {dayObjPrevMonth.subtract(daysPrevMonth - i, "day").date()}
                         </Date>
                     ))}
                     {range(daysCurrentMonth).map((i) => (
-                        <Date key={i} className={"date" + (i + 1)}>
+                        <Date key={i} className={"date" + (i + 1)} id={`${dateId}-${i + 1}`}>
                             {i + 1}
                         </Date>
                     ))}
 
                     {range(6 - daysNextMonth).map((i) => (
-                        <Date className="faded" key={i}>
+                        <Date className="faded" key={i} id={`${NextdateId}-${dayObjNextMonth.add(i + 1, "day").date()}`}>
                             {dayObjNextMonth.add(i + 1, "day").date()}
                         </Date>
                     ))}
@@ -78,7 +81,6 @@ const Calendar = () => {
                     </CalendarBtn>
                     <CalendarBtn className="complete_check_btn">완료된 일정 보기</CalendarBtn>
                 </ControlBtnContainer>
-                <button onClick={() => _showModal(false)}>Modal Open</button>
             </CalendarContainer>
         </React.Fragment>
     );

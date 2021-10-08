@@ -35,7 +35,7 @@ const UploadModal = (props) => {
 
         const newObj = { title: newTitle, date: newDate, desc: newDesc };
 
-        dispatch(scheduleActions.setSchedule(newObj));
+        dispatch(scheduleActions.addSchedule(newObj));
         dispatch(modalActions.closeModal());
     };
 

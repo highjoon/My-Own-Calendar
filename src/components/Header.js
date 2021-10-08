@@ -9,14 +9,8 @@ const HeaderBar = (props) => {
     const dayObj = useSelector((state) => state.date.date);
     const todayObj = useSelector((state) => state.date.now);
 
-    const prevMonth = () => {
-        dispatch(dateActions.setDate(dayObj.clone().subtract(1, "month")));
-    };
-
-    const nextMonth = () => {
-        dispatch(dateActions.setDate(dayObj.clone().add(1, "month")));
-    };
-
+    const prevMonth = () => dispatch(dateActions.setDate(dayObj.clone().subtract(1, "month")));
+    const nextMonth = () => dispatch(dateActions.setDate(dayObj.clone().add(1, "month")));
     const moveToday = () => {
         const todayYear = todayObj.get("year");
         const todayMonth = todayObj.get("month");

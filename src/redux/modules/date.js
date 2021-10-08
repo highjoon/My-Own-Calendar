@@ -1,6 +1,9 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
 import dayjs from "dayjs";
+import "dayjs/locale/ko";
+
+dayjs.locale("ko");
 
 // Action Types
 const SET_NOW = "date/SET_NOW";

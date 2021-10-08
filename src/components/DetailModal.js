@@ -1,26 +1,27 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Modal from "react-modal";
-import { actionCreators as scheduleActions } from "../redux/modules/schedule";
 import { actionCreators as modalActions } from "../redux/modules/modal";
 import { DetailTitle, DetailTime, DetailContent, DetailBtnContainer, EditBtn, DeleteBtn, CompleteBtn, ModalStyles } from "../Styles/Style";
 
 const DetailModal = (props) => {
     const dispatch = useDispatch();
     const modalIsOpen = useSelector((state) => state.modal.is_show);
+    const currentId = useSelector((state) => state.modal.id);
+    const newSchedule = useSelector((state) => state.schedule.scheduleList);
 
-    const _closeModal = () => {
-        dispatch(modalActions.closeModal());
-    };
+    const _closeModal = () => dispatch(modalActions.closeModal());
 
-    const newSchedule = useSelector((state) => state.schedule.schedule);
+    const target = newSchedule.filter((schedule) => {
+        return schedule.date.join("-") === currentId;
+    });
 
     return (
         <React.Fragment>
             <Modal isOpen={modalIsOpen} onRequestClose={_closeModal} style={ModalStyles}>
-                <DetailTitle>{newSchedule ? newSchedule.title : ""}</DetailTitle>
-                <DetailTime>{newSchedule ? `${newSchedule.date[0]}년 ${newSchedule.date[1]}월 ${newSchedule.date[2]}일` : ""}</DetailTime>
-                <DetailContent>{newSchedule ? newSchedule.desc : ""}</DetailContent>
+                <DetailTitle>{target[0].title}</DetailTitle>
+                <DetailTime>{`${target[0].date[0]}년 ${target[0].date[1]}월 ${target[0].date[2]}일`}</DetailTime>
+                <DetailContent>{target[0].desc}</DetailContent>
                 <DetailBtnContainer>
                     <EditBtn>Edit</EditBtn>
                     <DeleteBtn>Delete</DeleteBtn>
