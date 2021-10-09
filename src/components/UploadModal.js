@@ -73,7 +73,7 @@ const UploadModal = (props) => {
 };
 
 const UploadDate = styled(DatePicker)`
-    width: 400px;
+    width: 80%;
     text-align: center;
     font-size: var(--font-regular);
     outline: none;
